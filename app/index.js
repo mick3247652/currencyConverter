@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "./screens/Home";
+import CurrencyList from "./screens/CurrencyList";
 import EStyleSheet from "react-native-extended-stylesheet";
 
 EStyleSheet.build({
@@ -11,4 +12,4 @@ EStyleSheet.build({
 
 })
 
-export default () => <Home />;
+export default () => <CurrencyList />;
