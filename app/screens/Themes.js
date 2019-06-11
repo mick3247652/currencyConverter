@@ -1,27 +1,32 @@
 import React, { Component } from "react";
-import { ScrollView, StatusBar } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet'
+import { ScrollView, StatusBar } from "react-native";
+import EStyleSheet from "react-native-extended-stylesheet";
+import PropTypes from "prop-types";
 
 import { ListItem, Separator } from "../components/List";
 
 const styles = EStyleSheet.create({
-    $blue: '$primaryBlue',
-    $orange: '$primaryOrange',
-    $green: '$primaryGreen',
-    $purple: '$primaryPurple',
-  });
+  $blue: "$primaryBlue",
+  $orange: "$primaryOrange",
+  $green: "$primaryGreen",
+  $purple: "$primaryPurple"
+});
 
 class Themes extends Component {
-  
-    handlePressTheme = (color) => {
-        console.log('Theme Press', color)
-    }
+  static propTypes = {
+    navigation: PropTypes.object
+  };
 
-    render() {
-      return (
-        <ScrollView>
-          <StatusBar translucent={false} barStyle="default" />
-          <ListItem
+  handlePressTheme = color => {
+    console.log("Theme Press", color);
+    this.props.navigation.goBack(null);
+  };
+
+  render() {
+    return (
+      <ScrollView>
+        <StatusBar translucent={false} barStyle="default" />
+        <ListItem
           text="Blue"
           onPress={() => this.handlePressTheme(styles.$blue)}
           selected
@@ -52,11 +57,9 @@ class Themes extends Component {
           checkmark={false}
           iconBackground={styles.$purple}
         />
-
-        </ScrollView>
-      );
-    }
+      </ScrollView>
+    );
   }
-  
-  export default Themes;
-  
+}
+
+export default Themes;
