@@ -2,8 +2,8 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 
-const ClearButton = ({ text, OnPress }) => (
-  <TouchableOpacity style={styles.container} OnPress={OnPress}>
+const ClearButton = ({ text, onPress }) => (
+  <TouchableOpacity style={styles.container} onPress={onPress}>
     <View style={styles.wrapper}>
       <Image
         resizeMode="contain"
