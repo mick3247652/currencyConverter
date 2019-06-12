@@ -10,7 +10,11 @@ import { ClearButton } from "../components/Buttons";
 import { LastConverted } from "../components/Text";
 import { Header } from "../components/Header";
 
-import { swapCurrency, changeCurrencyAmount } from "../actions/currencies";
+import {
+  swapCurrency,
+  changeCurrencyAmount,
+  getInitialConversion
+} from "../actions/currencies";
 
 class Home extends Component {
   static propTypes = {
@@ -22,8 +26,12 @@ class Home extends Component {
     conversionRate: PropTypes.number,
     isFetching: PropTypes.bool,
     lastConvertedDate: PropTypes.object,
-    primaryColor: PropTypes.string,
+    primaryColor: PropTypes.string
   };
+
+  componentWillMount() {
+    this.props.dispatch(getInitialConversion());
+  }
 
   handlePressBaseCurrency = () => {
     this.props.navigation.navigate("CurrencyList", {
@@ -58,7 +66,7 @@ class Home extends Component {
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handleOptionPress} />
         <KeyboardAvoidingView behavior="padding">
-          <Logo tintColor={this.props.primaryColor}/>
+          <Logo tintColor={this.props.primaryColor} />
           <InputWithButton
             buttonText={this.props.baseCurrency}
             onPress={this.handlePressBaseCurrency}
@@ -107,7 +115,7 @@ const mapStateToProps = state => {
     lastConvertedDate: conversionSelector.date
       ? new Date(conversionSelector.date)
       : new Date(),
-    primaryColor: state.theme.primaryColor,
+    primaryColor: state.theme.primaryColor
   };
 };
 
